@@ -84,7 +84,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <action selector="onNextTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0KH-VF-azp"/>
+                                            <action selector="maleGenderPressed:" destination="HV0-aC-bcl" eventType="touchUpInside" id="TnZ-Q2-gf4"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nql-OO-dSB" customClass="customButton" customModule="skeletonUI" customModuleProvider="target">
@@ -96,7 +96,11 @@
                                         <state key="normal" title="F">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <state key="selected">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
                                         <connections>
+                                            <action selector="femaleGenderPressed:" destination="HV0-aC-bcl" eventType="touchUpInside" id="e3U-mD-9Sg"/>
                                             <action selector="onNextTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="oeL-GY-6FK"/>
                                         </connections>
                                     </button>
@@ -132,6 +136,9 @@
                                     </label>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rld-VE-EmA">
                                         <rect key="frame" x="305" y="0.0" width="51" height="31"/>
+                                        <connections>
+                                            <action selector="toggleTapped:" destination="HV0-aC-bcl" eventType="valueChanged" id="195-ir-853"/>
+                                        </connections>
                                     </switch>
                                 </subviews>
                             </stackView>
@@ -183,12 +190,72 @@
                     </view>
                     <navigationItem key="navigationItem" id="EX6-0u-Cld"/>
                     <connections>
+                        <outlet property="fGenderBtn" destination="Nql-OO-dSB" id="kDM-jP-GBa"/>
+                        <outlet property="mGenderBtn" destination="2NA-Cb-CxP" id="Svz-bi-KHc"/>
                         <outlet property="nameTxtField" destination="Q5L-i1-vJT" id="Dz6-Bm-aGK"/>
+                        <outlet property="notificationToggle" destination="Rld-VE-EmA" id="D4Z-vs-LWN"/>
+                        <segue destination="Tmt-aN-Fhh" kind="show" identifier="infoVCSegue" id="ynr-70-yAF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EST-vD-5dL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="998.55072463768124" y="76.630434782608702"/>
+        </scene>
+        <!--InfoVC-->
+        <scene sceneID="aO3-hx-pHc">
+            <objects>
+                <viewController id="Tmt-aN-Fhh" customClass="InfoVC" customModule="skeletonUI" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4up-PI-r3q">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="qlA-uK-Jv1">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fzg-bg-eyV">
+                                <rect key="frame" x="171.66666666666666" y="150" width="71" height="36"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="26"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Permissions" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lms-6s-n6k">
+                                <rect key="frame" x="139" y="322" width="136.33333333333337" height="35.666666666666686"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="26"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gender" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VbX-N8-Qy3">
+                                <rect key="frame" x="162.66666666666666" y="236" width="89" height="36"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="26"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="kJF-Wt-rEz"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Fzg-bg-eyV" firstAttribute="centerX" secondItem="4up-PI-r3q" secondAttribute="centerX" id="0Aa-9T-Bbl"/>
+                            <constraint firstItem="VbX-N8-Qy3" firstAttribute="centerX" secondItem="4up-PI-r3q" secondAttribute="centerX" id="8Fp-gi-VzL"/>
+                            <constraint firstItem="kJF-Wt-rEz" firstAttribute="bottom" secondItem="qlA-uK-Jv1" secondAttribute="bottom" id="GQp-MK-0A5"/>
+                            <constraint firstItem="Fzg-bg-eyV" firstAttribute="top" secondItem="kJF-Wt-rEz" secondAttribute="top" constant="150" id="H7P-do-EBT"/>
+                            <constraint firstItem="qlA-uK-Jv1" firstAttribute="leading" secondItem="kJF-Wt-rEz" secondAttribute="leading" id="I9Z-sX-QkL"/>
+                            <constraint firstItem="lms-6s-n6k" firstAttribute="centerX" secondItem="4up-PI-r3q" secondAttribute="centerX" id="N76-z3-YDV"/>
+                            <constraint firstItem="VbX-N8-Qy3" firstAttribute="top" secondItem="Fzg-bg-eyV" secondAttribute="bottom" constant="50" id="Xw8-bm-Rt2"/>
+                            <constraint firstAttribute="trailing" secondItem="qlA-uK-Jv1" secondAttribute="trailing" id="eeJ-8n-lFu"/>
+                            <constraint firstItem="qlA-uK-Jv1" firstAttribute="top" secondItem="4up-PI-r3q" secondAttribute="top" id="lnt-7A-p47"/>
+                            <constraint firstItem="lms-6s-n6k" firstAttribute="top" secondItem="VbX-N8-Qy3" secondAttribute="bottom" constant="50" id="sM8-hb-Enk"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="a9M-k9-JVi"/>
+                    <connections>
+                        <outlet property="genderLabel" destination="VbX-N8-Qy3" id="nc8-co-62z"/>
+                        <outlet property="nameLabel" destination="Fzg-bg-eyV" id="7F1-0k-Dh7"/>
+                        <outlet property="permissionsLabel" destination="lms-6s-n6k" id="1y3-Jm-ASZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5Ke-Ri-VIx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1746" y="87"/>
         </scene>
     </scenes>
     <resources>

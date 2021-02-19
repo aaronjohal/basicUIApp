@@ -11,6 +11,6 @@ struct User {
     
     var name: String!
     var gender: String!
-    var permissions: Bool!
+    var permissions = true //by default
     
 }
